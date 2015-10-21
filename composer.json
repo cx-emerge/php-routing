@@ -1,0 +1,26 @@
+{
+    "name": "emerge/routing",
+    "type": "library",
+    "description": "emerge routing",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "高翔",
+            "email": "263027768@qq.com"
+        }
+    ],
+    "php": ">=5.4.0",
+    "require-dev": {
+        "phpunit/phpunit": "5.0.*"
+    }
+    "autoload": {
+        "psr-4": {
+            "Emerge\\": "src/"
+        }
+    },
+
+    "repositories": [
+        {"type": "composer", "url": "http://packagist.phpcomposer.com"},
+        {"packagist": false}
+    ]
+}
