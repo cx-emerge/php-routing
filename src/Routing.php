@@ -22,9 +22,7 @@ class Routing
      */
     public function get($route, $callback, array $options = [])
     {
-        if (!isset($options['method'])) {
-            $options['method'] = 'GET';
-        }
+        $this->filterRouteOptions($options);
 
         $routeData = [$route, $callback, $options];
 
@@ -43,6 +41,37 @@ class Routing
      */
     public function dispatch($method, $uri)
     {
+        $result = [];
 
+        foreach ($this->routeData as $routeData) {
+            $pattern = preg_replace(
+                '/\$([\w\d-_]+)/', '(?<${1}>\w+)', $routeData[0]
+            );
+            $pattern = '~^' . $pattern . '$~';
+
+            if (preg_match($pattern, $uri, $parameters)) {
+                $result['route'] = $routeData[0];
+                $result['callback'] = $routeData[1];
+                $result['options'] = $routeData[2];
+                $result['parameters'] = $parameters;
+                break;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * 过滤路由选项
+     *
+     * @param mixed[] &$options 路由选项
+     */
+    private function filterRouteOptions(&$options)
+    {
+        if (!isset($options['method'])) {
+            $options['method'] = ['GET'];
+        } elseif (is_string($options['method'])) {
+            $options['method'] = [$options['method']];
+        }
     }
 }

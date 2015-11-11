@@ -19,7 +19,7 @@ class RoutingTest extends PHPUnit_Framework_TestCase
         $this->assertEquals([
             '/admin',
             ['App\Admin', 'index'],
-            ['method' => 'GET']
+            ['method' => ['GET']]
         ], $routeData);
     }
 
@@ -42,6 +42,6 @@ class RoutingTest extends PHPUnit_Framework_TestCase
             ]
         );
 
-        $routing->dispatch('GET', '/admin/user/1');
+        $result = $routing->dispatch('GET', '/admin/user/1');
     }
 }
