@@ -43,5 +43,26 @@ class RoutingTest extends PHPUnit_Framework_TestCase
         );
 
         $result = $routing->dispatch('GET', '/admin/user/1');
+        
+        $this->assertEquals([
+            'route' => '/admin/user/$id',
+            'callback' => [
+                'App\Admin',
+                'index'
+            ],
+            'options' => [
+                'requirements' => [
+                    'id' => '\d+'
+                ],
+                'method' => [
+                    'GET'
+                ]
+            ],
+            'parameters' => [
+                0 => '/admin/user/1',
+                'id' => 1,
+                1 => 1
+            ]
+        ], $result);
     }
 }

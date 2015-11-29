@@ -44,8 +44,18 @@ class Routing
         $result = [];
 
         foreach ($this->routeData as $routeData) {
-            $pattern = preg_replace(
-                '/\$([\w\d-_]+)/', '(?<${1}>\w+)', $routeData[0]
+            $pattern = preg_replace_callback(
+                '~\$([\w\d-_]+)~',
+                function ($matches) use ($routeData) {
+                    $requirements = '\w+';
+                    if (isset($routeData[2]['requirements'])) {
+                        $requirement = $routeData[2]['requirements'][$matches[1]];
+                        $requirements = $requirement ?: $requirements;
+                    }
+
+                    return sprintf('(?<%s>%s)', $matches[1], $requirements);
+                },
+                $routeData[0]
             );
             $pattern = '~^' . $pattern . '$~';
 
