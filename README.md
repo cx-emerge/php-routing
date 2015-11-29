@@ -1,8 +1,15 @@
 # 简介
 一个基础的PHP路由
 
+# 安装
+```
+composer require emerge/php-routing
+```
+
 # 快速入门
 ```php
+use Emerge\Routing;
+
 $routing = new Routing();
 
 $routing->get(
