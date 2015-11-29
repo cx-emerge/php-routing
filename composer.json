@@ -1,7 +1,7 @@
 {
-    "name": "emerge/routing",
+    "name": "emerge/php-routing",
     "type": "library",
-    "description": "emerge routing",
+    "description": "Emerge PHP Routing",
     "license": "MIT",
     "authors": [
         {

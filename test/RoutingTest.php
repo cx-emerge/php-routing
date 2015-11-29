@@ -7,6 +7,11 @@ use Emerge\Routing;
 
 class RoutingTest extends PHPUnit_Framework_TestCase
 {
+    public function testVERSION()
+    {
+        $this->assertEquals('0.1.0', Routing::VERSION);
+    }
+
     public function testGet()
     {
         $routing = new Routing();
@@ -43,7 +48,7 @@ class RoutingTest extends PHPUnit_Framework_TestCase
         );
 
         $result = $routing->dispatch('GET', '/admin/user/1');
-        
+
         $this->assertEquals([
             'route' => '/admin/user/$id',
             'callback' => [

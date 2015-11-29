@@ -8,6 +8,9 @@ namespace Emerge;
  */
 class Routing
 {
+    /** @var string 版本号 */
+    const VERSION = '0.1.0';
+
     /** @var mixed[] 路由数据 */
     private $routeData = [];
 
