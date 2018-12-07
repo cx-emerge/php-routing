@@ -9,7 +9,7 @@ namespace Emerge;
 class Routing
 {
 	/** @var string 版本号 */
-	const VERSION = '0.1.1';
+	const VERSION = '0.1.2';
 
 	/** @var mixed[] 路由数据 */
 	private $routeData = [];
@@ -48,7 +48,7 @@ class Routing
 
 		foreach ($this->routeData as $routeData) {
 			$pattern = preg_replace_callback(
-				'~\$([\w\d-_]+)~',
+				'~\$([\w\d\-\_]+)~',
 				function ($matches) use ($routeData) {
 					$requirements = '\w+';
 

@@ -1,15 +1,12 @@
 <?php
-require implode(DIRECTORY_SEPARATOR, [
-    dirname(__DIR__), 'vendor', 'autoload.php'
-]);
-
+use PHPUnit\Framework\TestCase;
 use Emerge\Routing;
 
-class RoutingTest extends PHPUnit_Framework_TestCase
+class RoutingTest extends TestCase
 {
     public function testVERSION()
     {
-        $this->assertEquals('0.1.0', Routing::VERSION);
+        $this->assertEquals('0.1.2', Routing::VERSION);
     }
 
     public function testGet()
